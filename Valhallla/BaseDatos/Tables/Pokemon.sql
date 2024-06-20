@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Pokemon]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Numero] INT NOT NULL, 
+    [Nivel] INT NOT NULL
+)
