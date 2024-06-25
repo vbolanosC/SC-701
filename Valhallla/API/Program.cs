@@ -1,7 +1,11 @@
-using Abstracciones.DA;
-using DA;
-using BW;
+using Abstracciones.BC;
 using Abstracciones.BW;
+using Abstracciones.DA;
+using Abstracciones.SG;
+using BC;
+using BW;
+using DA;
+using SG;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +18,18 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IRepositorioDapper, RepositorioDapper>();
 builder.Services.AddScoped<IPokemonDA, PokemonDA>();
+builder.Services.AddScoped<IEquipoDA, EquipoDA>();
+builder.Services.AddScoped<IEntrenadorDA, EntrenadorDA>();
+
+builder.Services.AddScoped<IPokemonSG, PokemonSG>();
+
+builder.Services.AddScoped<IEntrenadorBC, EntrenadorBC>();
+builder.Services.AddScoped<IPokemonBC, PokemonBC>();
+builder.Services.AddScoped<IEquipoBC, EquipoBC>();
+
 builder.Services.AddScoped<IPokemonBW, PokemonBW>();
+builder.Services.AddScoped<IEntrenadorBW, EntrenadorBW>();
+builder.Services.AddScoped<IEquipoBW, EquipoBW>();
 
 var app = builder.Build();
 

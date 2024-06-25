@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Abstracciones.Entidades
 {
-    public class Equipos
+    public class PokemonxEquipo
     {
-        public Guid Id { get; set; }
-        public Guid IdEntrenador { get; set; }
-        public string? Nombre { get; set; }
+        public Guid IdEquipo { get; set; }
+        public Guid IdPokemon { get; set; }
     }
 }

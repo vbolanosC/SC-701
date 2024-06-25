@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Abstracciones.API;
 using Abstracciones.BW;
 
@@ -14,17 +15,20 @@ namespace API.Controllers
         {
             _pokemonBW = pokemonBW;
         }
-
-        [HttpGet]
-        public async Task<IActionResult> Obtener()
+        [HttpPost]
+        [Route("Generar")]
+        public async Task<IActionResult> GenerarPokemon()
         {
-            return Ok(await _pokemonBW.Obtener());
+            int resultado = await _pokemonBW.GenerarPokemon();
+            if (resultado == 0)
+                return NoContent();
+            return Ok(resultado);
         }
 
-        [HttpGet("{Id}")]
-        public Task<IActionResult> Obtener(Guid Id)
+        [HttpGet("PokemonxEquipo/{Id}")]
+        public async Task<IActionResult> ObtenerPokemonxEquipo([FromRoute] Guid Id)
         {
-            throw new NotImplementedException();
+            return Ok(await _pokemonBW.ObtenerPokemonXEquipos(Id));
         }
     }
 }

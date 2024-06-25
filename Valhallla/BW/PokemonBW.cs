@@ -1,32 +1,51 @@
-﻿using Abstracciones.BW;
+﻿using Abstracciones.BC;
+using Abstracciones.BW;
 using Abstracciones.DA;
 using Abstracciones.Modelos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Abstracciones.SG;
 
 namespace BW
 {
     public class PokemonBW : IPokemonBW
     {
-        private IPokemonDA _pokemonDA;
 
-        public PokemonBW(IPokemonDA pokemonDA)
+        private IPokemonDA _pokemonDA;
+        private IEntrenadorDA _entrenadorDA;
+        private IPokemonSG _pokemonSG;
+        private IPokemonBC _pokemonBC;
+
+        public PokemonBW(IPokemonDA pokemonDA, IPokemonSG pokemonSG, IPokemonBC pokemonBC, IEntrenadorDA entrenadorDA)
         {
             _pokemonDA = pokemonDA;
+            _pokemonSG = pokemonSG;
+            _pokemonBC = pokemonBC;
+            _entrenadorDA = entrenadorDA;
         }
 
-        public async Task<IEnumerable<Equipo>> Obtener()
+        public async Task<int> GenerarPokemon()
         {
-            var equiposPokemon = await _pokemonDA.Obtener();
-            return equiposPokemon;
+            int cantidadEntrenadores = await _entrenadorDA.ObtenerCantidad();
+            if (cantidadEntrenadores == 0)
+                return 0;
+            return await _pokemonBC.GenerarPokemon(cantidadEntrenadores);
         }
 
-        public Task<Equipo> Obtener(Guid Id)
+        public async Task<IEnumerable<Pokemon>> ObtenerPokemonXEquipos(Guid Id)
         {
-            throw new NotImplementedException();
+            var pokemonBD = await _pokemonDA.ObtenerPokemonXEquipo(Id);
+            List<Pokemon> EquipoPokemon = new List<Pokemon>();
+            foreach (var pokemon in pokemonBD)
+            {
+                var pokemonAPI = await _pokemonSG.Obtener(pokemon.Numero);
+                //Implementar lógica para completar el modelo Pokemon con la información del API
+                pokemon.Sprite = pokemonAPI.Sprite;
+                pokemon.crie = pokemonAPI.crie;
+                pokemon.Nombre = pokemonAPI.Nombre;
+                pokemon.Tipo = pokemonAPI.Tipo;
+                EquipoPokemon.Add(pokemon);
+            }
+
+            return EquipoPokemon;
         }
     }
 }

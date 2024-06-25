@@ -9,8 +9,8 @@ namespace Abstracciones.DA
 {
     public interface IPokemonDA
     {
-        public Task<IEnumerable<Equipo>> Obtener();
-
-        public Task<IEnumerable<Pokemon>> Obtener(Guid Id);
+        public Task<IEnumerable<Pokemon>> ObtenerPokemonXEquipo(Guid Id);
+        public Task<IEnumerable<Pokemon>> ObtenerPokemon();
+        public Task Agregar(Entidades.Pokemon pokemon);
     }
 }

@@ -11,8 +11,7 @@ namespace Abstracciones.API
     
     public interface IPokemonController
     {
-        public Task<IActionResult> Obtener();
-
-        public Task<IActionResult> Obtener(Guid Id);
+        public Task<IActionResult> ObtenerPokemonxEquipo(Guid Id);
+        public Task<IActionResult> GenerarPokemon();
     }
 }

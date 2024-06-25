@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Abstracciones.Entidades
 {
-    public class Entrenadores
+    public class Equipo
     {
-        public Guid Id { get; set; }
-
-        public string Nombre { get; set; }
+        public Guid IdEquipo { get; set; }
+        public Guid IdEntrenador { get; set; }
+        public string? Nombre { get; set; }
     }
 }

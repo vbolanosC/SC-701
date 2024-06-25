@@ -9,8 +9,7 @@ namespace Abstracciones.BW
 {
     public interface IPokemonBW
     {
-        public Task<IEnumerable<Equipo>> Obtener();
-
-        public Task<Equipo> Obtener(Guid Id);
+        public Task<IEnumerable<Pokemon>> ObtenerPokemonXEquipos(Guid Id);
+        Task<int> GenerarPokemon();
     }
 }

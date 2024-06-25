@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Abstracciones.DA
+namespace Abstracciones.BW
 {
-    public interface IEquipoDA
+    public interface IEquipoBW
     {
         public Task<IEnumerable<Equipo>> ObtenerEquipos();
-        public Task<Guid> Agregar(Entidades.Equipo equipo);
-        public Task AgregarPokemonxEquipo(Abstracciones.Entidades.PokemonxEquipo pokemonxEquipo);
+        public Task<int> GenerarEquipos();
     }
 }

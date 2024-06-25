@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace Abstracciones.BC
 {
-    public interface IEquipoBC
+    public interface IEntrenadorBC
     {
-        Task<int> GenerarEquipos(IEnumerable<Entrenador> entrenadores, IEnumerable<Pokemon> pokemon);
+        public Entrenador DarFormato(Entrenador entrenador);
     }
 }

@@ -16,8 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Abstracciones\Abstracciones.csproj" />
+    <ProjectReference Include="..\BC\BC.csproj" />
     <ProjectReference Include="..\BW\BW.csproj" />
     <ProjectReference Include="..\DA\DA.csproj" />
+    <ProjectReference Include="..\SG\SG.csproj" />
   </ItemGroup>
 
 </Project>
